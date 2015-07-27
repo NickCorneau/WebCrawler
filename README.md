@@ -1,5 +1,7 @@
 # WebCrawler
-A basic Python web crawler.
+# A basic Python web crawler.
+
+
 
 GetNextTarget.py - retrieves the first link on a webpage.
 

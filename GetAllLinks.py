@@ -1,5 +1,6 @@
 def get_all_links(page):
 	links = []
+	
 	while True:
 		url, endpos = get_next_target(page)
 		if url:
@@ -7,4 +8,5 @@ def get_all_links(page):
 			page = page[endpos:]
 		else:
 			break
+		
 	return links

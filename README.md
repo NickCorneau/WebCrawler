@@ -9,10 +9,10 @@
 ######PrintAllLinks.py 
 - prints out all the links on a webpage.
 
-####GetAllLinks.py 
+######GetAllLinks.py 
 - returns all links on a webpage, in a list
 
-####CrawlWebSize.py 
+######CrawlWebSize.py 
 - crawls pages until we reach a dead-end. 
 - stops at specified amount of links. 
 - returns a list of url's of all pages crawled

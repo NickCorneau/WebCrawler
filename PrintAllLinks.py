@@ -1,4 +1,5 @@
 def print_all_links(page):
+	
 	while True:
 		url, endpos = get_next_target(page)
 		if url:

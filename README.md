@@ -1,18 +1,4 @@
 # WebCrawler
 ## A basic Python web crawler.
 
-
-
-######GetNextTarget.py 
-- returns the first link on a webpage.
-
-######PrintAllLinks.py 
-- prints out all the links on a webpage.
-
-######GetAllLinks.py 
-- returns all links on a webpage, in a list
-
-######CrawlWebSize.py 
-- crawls pages until we reach a dead-end. 
-- stops at specified amount of links. 
-- returns a list of url's of all pages crawled
+- get_page(url) only works with 3 specified url's

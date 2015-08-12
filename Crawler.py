@@ -1,15 +1,4 @@
-def add_to_index(index, keyword, url):
-   # print(index,keyword,url)
-    for entry in index:
-        if entry[0] == keyword:
-            if url in entry[1]:
-                return
-            entry[1].append(url)
-            return
-    # not found, add new keyword to index
-    index.append([keyword, [url]])
-
-
+""" HACKISH FUNCTION TO FAKE A geturl """
 def get_page(url):
     try:
         if url == "http://www.udacity.com/cs101x/index.html":
@@ -37,11 +26,7 @@ quite good at  <a href="http://www.udacity.com/cs101x/kicking.html">kicking</a>.
         return ""
     return ""
 
-def union(a, b):
-    for e in b:
-        if e not in a:
-            a.append(e)
-
+""" Gets all links based on <a href= """
 def get_next_target(page):
     start_link = page.find('<a href=')
     if start_link == -1:
@@ -65,11 +50,11 @@ def get_all_links(page):
 def crawl_web(seed):
     tocrawl = [seed]
     crawled = []
-    index = []
+    index = {}
     while tocrawl:
         page = tocrawl.pop()
         if page not in crawled:
-            content = get_page(page)
+            content = get_page(page) # STILL FAKE ONLY WORKS FOR 3 URL's 
             add_page_to_index(index, page, content)
             union(tocrawl, get_all_links(content))
             crawled.append(page)
@@ -80,8 +65,23 @@ def add_page_to_index(index, url, content):
     for word in words:
         add_to_index(index, word, url)
 
+def add_to_index(index, keyword, url):
+    if keyword in index:
+        index[keyword].append(url)
+    else:
+        index[keyword] = [url]
+
 def lookup(index, keyword):
-    for entry in index:
-        if entry[0] == keyword:
-            return entry[1]
+    if keyword in index:
+        return index[keyword]
     return None
+
+def union(a, b):
+    for e in b:
+        if e not in a:
+            a.append(e)
+
+""" TESTING """
+index = {}
+index = (crawl_web("http://www.udacity.com/cs101x/index.html"))
+print(lookup(index, "idea"))

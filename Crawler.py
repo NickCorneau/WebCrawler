@@ -82,6 +82,5 @@ def union(a, b):
             a.append(e)
 
 """ TESTING """
-index = {}
 index = (crawl_web("http://www.udacity.com/cs101x/index.html"))
 print(lookup(index, "idea"))

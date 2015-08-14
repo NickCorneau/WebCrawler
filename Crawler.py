@@ -154,12 +154,8 @@ def crawl_web(seed): # returns index, graph of inlinks
         if page not in crawled:
             content = get_page(page)
             add_page_to_index(index, page, content)
-            outlinks = get_all_links(content)
-            
-            
-            graph[page] = outlinks
-            
-            
+            outlinks = get_all_links(content)     
+            graph[page] = outlinks                       
             union(tocrawl, outlinks)
             crawled.append(page)
     return index, graph
@@ -204,11 +200,60 @@ def union(a, b):
     for e in b:
         if e not in a:
             a.append(e)
-
+			
+def lucky_search(index, ranks, keyword):
+	pages = lookup(index, keyword)
+	if not pages:
+		return None
+	best_page = pages[0]
+	for candidate in pages:
+		if ranks[candidate] > ranks[best_page]:
+			best_page = candidate
+	return best_page
+	
 """ TESTING """
-index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
-ranks = compute_ranks(graph)
-print(lookup(index, "Nickel"))
-ranks = compute_ranks(graph)
-print ranks
+index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html') # creates index of webpages and a graph of related pages
+print(lookup(index, "Hummus")) # returns a list of all the url's in the index containing the keyword 'Hummus'
+ranks = compute_ranks(graph) # creates a ranking system based off a page's 'popularity' (inlinks vs. outlinks)
+print(lucky_search(index, ranks, 'Hummus')) # returns the most 'popular' page in the index containing the work 'hummus'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
